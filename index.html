@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+      
+        <!-- CodeMirror -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css"/>
+      
+        <!-- Firepad -->
+        <link rel="stylesheet" href="https://firepad.io/releases/v1.5.10/firepad.css" />
+        <script src="https://firepad.io/releases/v1.5.10/firepad.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      </head>
+<body>
+
+    <div>
+        <div>
+            <p>name: </p>
+            <input type="text" id="name">
+            <br>
+            <p>roll no: </p>
+            <input type="number" id="roll-no">
+            <br>
+            <p>Class: </p>
+            <input type="text" id="class-name">
+            <br>
+            <button id="submit-btn" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "API_AIzaSyCp496q8_zHNzCaDIpe4X0mqNjLBA89m9AKEY",
+            authDomain: "intern-e6f49.firebaseapp.com",
+            databaseURL: "https://intern-e6f49-default-rtdb.firebaseio.com/",
+            projectId: "intern-e6f49",
+            storageBucket: "intern-e6f49.appspot.com",
+            messagingSenderId: "1090838383912",
+            appId: "APP_ID",
+            measurementId: "G-MEASUREMENT_ID",
+        };
+    
+        firebase.initializeApp(firebaseConfig);
+
+        var userData = firebase.database().ref("students/");
+
+        $('#submit-btn').on('click', function(){
+            var name = $('#name').val();
+            var roll_no = $('#roll-no').val();
+            var class_name = $('#class-name').val();
+
+            userData.set({
+                name: name,
+                roll_no: roll_no,
+                class_name: class_name   
+
+            });
+        });
+
+    </script>
+  </body>
+</html>
